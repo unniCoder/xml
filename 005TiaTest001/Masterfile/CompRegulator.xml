@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-05-05T14:34:40.4407508Z</Created>
+    <ExportSetting>None</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>SINAMICS Startdrive Advanced</DisplayName>
+        <DisplayVersion>V17 SP1</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G130, G150, S120, S150, SINAMICS MV, S210</DisplayName>
+        <DisplayVersion>V17 SP1</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G110M, G120, G120C, G120D, G120P, G115D</DisplayName>
+        <DisplayVersion>V17 SP1</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <HeaderAuthor>XYDNEUBE</HeaderAuthor>
+      <HeaderFamily>N/A</HeaderFamily>
+      <HeaderName>CompShutter.docx</HeaderName>
+      <HeaderVersion>8.0</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut">
+    <Member Name="status" Datatype="&quot;typeStatusCompRegulator&quot;">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">status of component </MultiLanguageText>
+        <MultiLanguageText Lang="en-US">status of component </MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="configConstant" Datatype="&quot;typeConfigConstantCompRegulator&quot;">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">config constant  of component </MultiLanguageText>
+        <MultiLanguageText Lang="en-US">config constant  of component </MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="hmi" Datatype="&quot;typeHmiCompRegulator&quot;">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">hmi variables to plc and to hmi</MultiLanguageText>
+        <MultiLanguageText Lang="en-US">hmi variables to plc and to hmi</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+  <Section Name="Static">
+    <Member Name="machineInfo" Datatype="&quot;typeMachineInfo&quot;"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="de-DE">Machine information details</MultiLanguageText></Comment></Member>
+    <Member Name="instCompRegulatorError" Datatype="Program_Alarm" Version="1.0"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="de-DE">Componenet Prssure regulator error</MultiLanguageText></Comment></Member>
+    <Member Name="instAlarmCompRegulatorError" Datatype="&quot;PreAlarm&quot;"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">false</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+  </Section>
+  <Section Name="Temp">
+    <Member Name="tempMessageIdError" Datatype="UDInt">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">message id for  Prssure regulator Not valid</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="tempMessageNrError" Datatype="UInt">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">message number Prssure regulatorl Not valid</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+  <Section Name="Constant">
+    <Member Name="STATE_ERROR" Datatype="UInt">
+      <Comment>
+        <MultiLanguageText Lang="de-DE">message number for  Prssure regulator error</MultiLanguageText>
+      </Comment>
+      <StartValue>1</StartValue>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>true</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>CompRegulator</Name>
+      <Number>226</Number>
+      <ProgrammingLanguage>FBD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>// ===========================================================================
+//
+-----------------------------------------------------------------------------
+// Library:		(that the source is dedicated to)
+// Tested with:	CPU 1516F-3 PN/DP V2.9
+// Engineering:	TIA Portal V17 Update 2
+// Restrictions: 	N/A
+// Requirements: 	N/A
+// Functionality:	Pressure Regulator
+//
+-----------------------------------------------------------------------------
+// Change log table:
+// Version		Date		Expert in charge	Changes applied
+// 00.00.01	12.04.2023	Rahul Kumar	First released version
+//============================================================================</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>// ===========================================================================
+//
+-----------------------------------------------------------------------------
+// Library:		(that the source is dedicated to)
+// Tested with:	CPU 1518F-4 V2.6
+// Engineering:	TIA Portal V15 Update 4
+// Restrictions: 	N/A
+// Requirements: 	N/A
+// Functionality:	Fuse
+//
+-----------------------------------------------------------------------------
+// Change log table:
+// Version		Date		Expert in charge	Changes applied
+// 08.00.00	04.03.2020	Dennis Neubert	set rollout to version V8.0
+// 00.00.01	21.11.2018	Dennis Neubert	First released version
+//============================================================================</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalConstant" UId="21">
+      <Constant Name="STATE_ERROR" />
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="status" />
+        <Component Name="error" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="configConstant" />
+        <Component Name="messageId" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="tempMessageIdError" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="tempMessageNrError" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="status" />
+        <Component Name="error" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="configConstant" />
+        <Component Name="machineName" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="configConstant" />
+        <Component Name="rkzRange" />
+        <Component Name="rkzDevice" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="29">
+      <Symbol>
+        <Component Name="tempMessageIdError" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="30">
+      <Symbol>
+        <Component Name="tempMessageNrError" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="31">
+      <Symbol>
+        <Component Name="configConstant" />
+        <Component Name="entityName" />
+      </Symbol>
+    </Access>
+    <Call UId="32">
+      <CallInfo Name="PreAlarm" BlockType="FB">
+        <Instance Scope="LocalVariable" UId="33">
+          <Component Name="instAlarmCompRegulatorError" />
+        </Instance>
+        <Parameter Name="inMessageNr" Section="Input" Type="UInt" />
+        <Parameter Name="condition" Section="Input" Type="Bool" />
+        <Parameter Name="basicNumber" Section="Input" Type="&quot;typeMessageNumber&quot;" />
+        <Parameter Name="messageId" Section="Output" Type="UDInt" />
+        <Parameter Name="outMessageNr" Section="Output" Type="UInt" />
+      </CallInfo>
+    </Call>
+    <Part Name="Program_Alarm" Version="1.0" UId="34">
+      <Instance Scope="LocalVariable" UId="35">
+        <Component Name="instCompRegulatorError" />
+      </Instance>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="46">
+      <OpenCon UId="36" />
+      <NameCon UId="32" Name="en" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="21" />
+      <NameCon UId="32" Name="inMessageNr" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="22" />
+      <NameCon UId="32" Name="condition" />
+    </Wire>
+    <Wire UId="49">
+      <IdentCon UId="23" />
+      <NameCon UId="32" Name="basicNumber" />
+    </Wire>
+    <Wire UId="50">
+      <NameCon UId="32" Name="messageId" />
+      <IdentCon UId="24" />
+    </Wire>
+    <Wire UId="51">
+      <NameCon UId="32" Name="outMessageNr" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="52">
+      <OpenCon UId="37" />
+      <NameCon UId="34" Name="en" />
+    </Wire>
+    <Wire UId="53">
+      <IdentCon UId="26" />
+      <NameCon UId="34" Name="SIG" />
+    </Wire>
+    <Wire UId="54">
+      <OpenCon UId="38" />
+      <NameCon UId="34" Name="TIMESTAMP" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="27" />
+      <NameCon UId="34" Name="SD_1" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="28" />
+      <NameCon UId="34" Name="SD_2" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="29" />
+      <NameCon UId="34" Name="SD_3" />
+    </Wire>
+    <Wire UId="58">
+      <IdentCon UId="30" />
+      <NameCon UId="34" Name="SD_4" />
+    </Wire>
+    <Wire UId="59">
+      <IdentCon UId="31" />
+      <NameCon UId="34" Name="SD_5" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="39" />
+      <NameCon UId="34" Name="SD_6" />
+    </Wire>
+    <Wire UId="61">
+      <OpenCon UId="40" />
+      <NameCon UId="34" Name="SD_7" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="41" />
+      <NameCon UId="34" Name="SD_8" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="42" />
+      <NameCon UId="34" Name="SD_9" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="43" />
+      <NameCon UId="34" Name="SD_10" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="34" Name="Error" />
+      <OpenCon UId="44" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="34" Name="Status" />
+      <OpenCon UId="45" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>FBD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text>Error alarms cases are programmed here</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="8" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text>***alarm pressure regulator in Error</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="configConstant" />
+        <Component Name="name" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="hmi" />
+        <Component Name="toHmi" />
+        <Component Name="name" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="status" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="hmi" />
+        <Component Name="toHmi" />
+        <Component Name="status" />
+      </Symbol>
+    </Access>
+    <Part Name="Move" UId="25" DisabledENO="true">
+      <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+    </Part>
+    <Part Name="Move" UId="26" DisabledENO="true">
+      <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="29">
+      <OpenCon UId="27" />
+      <NameCon UId="25" Name="en" />
+    </Wire>
+    <Wire UId="30">
+      <IdentCon UId="21" />
+      <NameCon UId="25" Name="in" />
+    </Wire>
+    <Wire UId="31">
+      <NameCon UId="25" Name="out1" />
+      <IdentCon UId="22" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="28" />
+      <NameCon UId="26" Name="en" />
+    </Wire>
+    <Wire UId="33">
+      <IdentCon UId="23" />
+      <NameCon UId="26" Name="in" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="26" Name="out1" />
+      <IdentCon UId="24" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>FBD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text>the data which is used by the hmi is transfered to the hmi interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>the data which is used by the hmi is transfered to the hmi interface</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="F" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text>***HMI interface to HMI </Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>***HMI interface to HMI / Schnittstelle zur HMI befüllen</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="12" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>CompRegulator</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="14" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>CompFuse</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>
