@@ -3,8 +3,8 @@ import xml.etree.cElementTree  as ET
 ns = "" 
 mytree = ET.parse('CompRegulator.xml')
 myroot = mytree.getroot()
-ET.register_namespace("1ns0", "http://www.siemens.com/automation/Openness/SW/Interface/v5")
-ET.register_namespace("1ns1", "http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4")
+#ET.register_namespace("1ns0", "http://www.siemens.com/automation/Openness/SW/Interface/v5")
+#ET.register_namespace("1ns1", "http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4")
 
 #iterating through the price values.
 
@@ -59,7 +59,7 @@ def addInInterface():
 
 
     with open('CompRegulator.xml', 'wb') as f:
-        # Write the modified ElementTree object to the file
+        #Write the modified ElementTree object to the file
         for elem in myroot.iter():
             if '}' in elem.tag:
                 elem.tag = elem.tag.split('}', 1)[1]
@@ -67,7 +67,7 @@ def addInInterface():
                 if '}' in name:
                     del elem.attrib[name]
                     elem.attrib[str(name).split('}', 1)[1]] = value
-        mytree.write(f, encoding='utf-8', xml_declaration=True  )                      
+        mytree.write('CompRegulator2.xml', encoding='utf-8', xml_declaration=True  )                      
 
 #replaceInInterface('InOut','status','value')
 addInInterface()

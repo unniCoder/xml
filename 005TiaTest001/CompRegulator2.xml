@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Document>
+<?xml version='1.0' encoding='utf-8'?>
+<Document xmlns:ns0="http://www.siemens.com/automation/Openness/SW/Interface/v5" xmlns:ns1="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
   <Engineering version="V17" />
   <DocumentInfo>
     <Created>2023-05-05T14:34:40.4407508Z</Created>
@@ -49,7 +49,7 @@
       <HeaderFamily>N/A</HeaderFamily>
       <HeaderName>CompShutter.docx</HeaderName>
       <HeaderVersion>8.0</HeaderVersion>
-      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+      <Interface><ns0:Sections>
   <Section Name="Input" />
   <Section Name="Output" />
   <Section Name="InOut">
@@ -97,7 +97,7 @@
       <StartValue>1</StartValue>
     </Member>
   </Section>
-</Sections></Interface>
+</ns0:Sections></Interface>
       <IsIECCheckEnabled>true</IsIECCheckEnabled>
       <MemoryLayout>Optimized</MemoryLayout>
       <MemoryReserve>100</MemoryReserve>
@@ -154,7 +154,7 @@
       </MultilingualText>
       <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
         <AttributeList>
-          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+          <NetworkSource><ns1:FlgNet>
   <Parts>
     <Access Scope="LocalConstant" UId="21">
       <Constant Name="STATE_ERROR" />
@@ -320,7 +320,7 @@
       <OpenCon UId="45" />
     </Wire>
   </Wires>
-</FlgNet></NetworkSource>
+</ns1:FlgNet></NetworkSource>
           <ProgrammingLanguage>FBD</ProgrammingLanguage>
         </AttributeList>
         <ObjectList>
@@ -360,7 +360,7 @@
       </SW.Blocks.CompileUnit>
       <SW.Blocks.CompileUnit ID="B" CompositionName="CompileUnits">
         <AttributeList>
-          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+          <NetworkSource><ns1:FlgNet>
   <Parts>
     <Access Scope="LocalVariable" UId="21">
       <Symbol>
@@ -420,7 +420,7 @@
       <IdentCon UId="24" />
     </Wire>
   </Wires>
-</FlgNet></NetworkSource>
+</ns1:FlgNet></NetworkSource>
           <ProgrammingLanguage>FBD</ProgrammingLanguage>
         </AttributeList>
         <ObjectList>
